@@ -1,0 +1,26 @@
+#canvas{
+    background: green;
+    display: block;
+  }
+  body{
+    margin:0;
+  }
+  #action{
+    position:fixed;
+    left:0;
+    bottom:0;
+  }
+  #actionx{
+    position:fixed;
+    left:0;
+    bottom:0;
+  }
+  #brush{
+    display: none;
+  }
+  #actionx>#brush{
+    display: inline-block;
+  }
+  #actionx>#eraser{
+    display: none;
+  }
