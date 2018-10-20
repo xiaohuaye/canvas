@@ -1,10 +1,10 @@
 //变量声明
-var yyy = document.getElementById('canvas');
-var context = yyy.getContext('2d');
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
 
 //视口全画板
-autofillView(yyy)
-paintAndEraser(yyy)
+autofillView(canvas)
+paintAndEraser(canvas)
 
 //橡皮檫开关
 var eraserenable = false
@@ -62,7 +62,7 @@ function paintAndEraser(canvas){
   }
 
   var lastPoint = {x:undefined,y:undefined}
-  yyy.onmousemove = function(aaa){
+  canvas.onmousemove = function(aaa){
     var x = aaa.clientX
     var y = aaa.clientY
     if(using){
@@ -76,7 +76,7 @@ function paintAndEraser(canvas){
       } 
     }
   }
-  yyy.onmouseup = function(aaa){
+  canvas.onmouseup = function(aaa){
     using = false
   }
 }
