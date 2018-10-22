@@ -49,34 +49,68 @@ function autofillView(canvas){
 
 function paintAndEraser(canvas){
   var using = false
-  canvas.onmousedown = function(aaa){
-    var x = aaa.clientX
-    var y = aaa.clientY
-    using = true
-    if(eraserenable){
-      context.clearRect((x-5),(y-5),10,10) 
-    }else{
-    lastPoint = {x:x,y:y}
-    //x,y for html
-    }
-  }
-
-  var lastPoint = {x:undefined,y:undefined}
-  canvas.onmousemove = function(aaa){
-    var x = aaa.clientX
-    var y = aaa.clientY
-    if(using){
+  if (document.body.ontouchstart !== undefined){
+  //It is telphone
+    canvas.ontouchstart = function(aaa){
+      var x = aaa.touches[0].clientX
+      var y = aaa.touches[0].clientY
+      using = true
       if(eraserenable){
-        context.clearRect((x-5),(y-5),10,10)
+        context.clearRect((x-5),(y-5),10,10) 
       }else{
-        var newPoint ={x:x,y:y}
-        drawline(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
-        //x,y for html
-        lastPoint = newPoint
-      } 
+      lastPoint = {x:x,y:y}
+      //x,y for html
+      }
     }
-  }
-  canvas.onmouseup = function(aaa){
-    using = false
+    canvas.ontouchmove = function(aaa){
+      var x = aaa.touches[0].clientX
+      var y = aaa.touches[0].clientY
+      if(using){
+        if(eraserenable){
+          context.clearRect((x-5),(y-5),10,10)
+        }else{
+          var newPoint ={x:x,y:y}
+          drawline(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
+          //x,y for html
+          lastPoint = newPoint
+        } 
+      }
+    }
+    canvas.ontouchend = function(aaa){
+      using = false
+    }
+  }else{
+  //It is PC
+    canvas.onmousedown = function(aaa){
+      var x = aaa.clientX
+      var y = aaa.clientY
+      using = true
+      if(eraserenable){
+        context.clearRect((x-5),(y-5),10,10) 
+      }else{
+      lastPoint = {x:x,y:y}
+      //x,y for html
+      }
+    }
+  
+    var lastPoint = {x:undefined,y:undefined}
+    canvas.onmousemove = function(aaa){
+      var x = aaa.clientX
+      var y = aaa.clientY
+      if(using){
+        if(eraserenable){
+          context.clearRect((x-5),(y-5),10,10)
+        }else{
+          var newPoint ={x:x,y:y}
+          drawline(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
+          //x,y for html
+          lastPoint = newPoint
+        } 
+      }
+    }
+    canvas.onmouseup = function(aaa){
+      using = false
+    }
   }
 }
+
