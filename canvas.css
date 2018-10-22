@@ -8,6 +8,9 @@
   margin: 0;
   padding: 0;
 }
+ul{
+  list-style: none;
+}
 #canvas{
     background: white;
     display: block;
@@ -42,7 +45,6 @@
     fill: blue;
   }
 .palette{
-  list-style: none;
   position: absolute;
   top: 50px;
   left: 17px;
@@ -65,4 +67,49 @@
 }
 .palette>.blue{
   background-color: blue;
+}
+.width{
+  position: fixed;
+  display: flex;
+  right: 8px;;
+  top: 14px;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+.width>li{
+  display: inline-block;
+  border-radius: 50%;
+  background-color: black;
+  
+}
+.width>.thin{
+  width: 10px;
+  height: 10px;
+  margin-right: 14px; 
+}
+.width>.thin2{
+  width: 14px;
+  height: 14px;
+  margin-right: 12px; 
+}
+.width>.normal{
+  width: 18px;
+  height: 18px;
+  margin-right: 10px; 
+}
+.width>.normal2{
+  width: 22px;
+  height: 22px;
+  margin-right: 10px; 
+}
+.width>.thick{
+  width: 26px;
+  height: 26px;
+  margin-right: 10px; 
+}
+.width .active{
+  box-shadow: 0px 0px 23px -5px rgba(0,0,0,0.75);
+  transform: scale(1.2);
+  transition: 0.3s;
 }

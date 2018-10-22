@@ -1,6 +1,12 @@
 //变量声明
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
+var lineWidth = 6 // 初始线宽
+var color = 'black' //初始颜色
+var widthKey = 'normal'
+width.onclick = function(before){
+   widthKey = before['target']['id']
+} // 记录下线宽的当前按键
 
 //视口全画板
 autofillView(canvas)
@@ -20,19 +26,74 @@ brush.onclick = function(){
 }
 //调色板颜色
 red.onclick = function(){
-  palette('red') //调红色
+  color = 'red'
+  palette(color) //调红色
 }
 yellow.onclick = function(){
-  palette('yellow') //调黄色
+  color = 'yellow'
+  palette(color) //调黄色
 }  
 blue.onclick = function(){
-  palette('blue') //调蓝色
+  color = 'blue'
+  palette(color) //调蓝色
 }
 black.onclick = function(){
-  palette('black') //调黑色
+  color = 'black'
+  palette(color) //调黑色
 }
 
+//画笔粗细
+thin.onclick = function(){
+  lineWidth = 2
+  activeRemove()
+  thin.classList.add('active')
+  widthColorRemove()
+  thin.style.background = color
+}
+thin2.onclick = function(){
+  lineWidth = 4
+  activeRemove()
+  thin2.classList.add('active')
+  widthColorRemove()
+  thin2.style.background = color
+}
+normal.onclick = function(){
+  lineWidth = 6
+  activeRemove()
+  normal.classList.add('active')
+  widthColorRemove()
+  normal.style.background = color
+}
+normal2.onclick = function(){
+  lineWidth = 8
+  activeRemove()
+  normal2.classList.add('active')
+  widthColorRemove()
+  normal2.style.background = color
+}
+thick.onclick = function(){
+  lineWidth = 10
+  activeRemove()
+  thick.classList.add('active')
+  widthColorRemove()
+  thick.style.background = color
+}
 //函数声明
+function activeRemove(){
+  thin.classList.remove('active')
+  thin2.classList.remove('active')
+  normal.classList.remove('active')
+  normal2.classList.remove('active')
+  thick.classList.remove('active')
+}
+
+function widthColorRemove(){
+  thin.style.background = 'black'
+  thin2.style.background = 'black'
+  normal.style.background = 'black'
+  normal2.style.background = 'black'
+  thick.style.background = 'black'
+}
 
 function palette(color){
   brush.classList.remove('black');
@@ -45,6 +106,8 @@ function palette(color){
   context.strokeStyle = color;
   context.fillStyle = color;
   brush.classList.add(color);
+  widthColorRemove()
+  document.getElementById(widthKey).style.background = color;
 }
 
 function fillView(canvas){
@@ -57,7 +120,7 @@ function fillView(canvas){
 function drawline(x1,y1,x2,y2){
   context.beginPath();
   context.moveTo(x1,y1)
-  context.lineWidth = 2
+  context.lineWidth = lineWidth
   context.lineTo(x2,y2)
   context.stroke()
   context.closePath()
