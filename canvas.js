@@ -10,13 +10,42 @@ paintAndEraser(canvas)
 var eraserenable = false
 eraser.onclick = function(){
   eraserenable = true
-  action.id = 'actionx'
+  eraser.classList.add('active')
+  brush.classList.remove('active')
 }
 brush.onclick = function(){
   eraserenable = false
-  actionx.id = 'action'
+  brush.classList.add('active')
+  eraser.classList.remove('active')
 }
+//调色板颜色
+red.onclick = function(){
+  palette('red') //调红色
+}
+yellow.onclick = function(){
+  palette('yellow') //调黄色
+}  
+blue.onclick = function(){
+  palette('blue') //调蓝色
+}
+black.onclick = function(){
+  palette('black') //调黑色
+}
+
 //函数声明
+
+function palette(color){
+  brush.classList.remove('black');
+  brush.classList.remove('red');
+  brush.classList.remove('yellow');
+  brush.classList.remove('blue');
+  eraserenable = false
+  brush.classList.add('active')
+  eraser.classList.remove('active')
+  context.strokeStyle = color;
+  context.fillStyle = color;
+  brush.classList.add(color);
+}
 
 function fillView(canvas){
   var pageWidth = document.documentElement.clientWidth
@@ -56,7 +85,7 @@ function paintAndEraser(canvas){
       var y = aaa.touches[0].clientY
       using = true
       if(eraserenable){
-        context.clearRect((x-5),(y-5),10,10) 
+        context.clearRect((x-5),(y-5),20,20) 
       }else{
       lastPoint = {x:x,y:y}
       //x,y for html
@@ -67,7 +96,7 @@ function paintAndEraser(canvas){
       var y = aaa.touches[0].clientY
       if(using){
         if(eraserenable){
-          context.clearRect((x-5),(y-5),10,10)
+          context.clearRect((x-5),(y-5),20,20)
         }else{
           var newPoint ={x:x,y:y}
           drawline(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
@@ -86,7 +115,7 @@ function paintAndEraser(canvas){
       var y = aaa.clientY
       using = true
       if(eraserenable){
-        context.clearRect((x-5),(y-5),10,10) 
+        context.clearRect((x-5),(y-5),20,20) 
       }else{
       lastPoint = {x:x,y:y}
       //x,y for html
@@ -99,7 +128,7 @@ function paintAndEraser(canvas){
       var y = aaa.clientY
       if(using){
         if(eraserenable){
-          context.clearRect((x-5),(y-5),10,10)
+          context.clearRect((x-5),(y-5),20,20)
         }else{
           var newPoint ={x:x,y:y}
           drawline(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
