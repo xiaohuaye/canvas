@@ -1,6 +1,7 @@
 //变量声明
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
+canvas.style.background = 'white'
 var lineWidth = 6 // 初始线宽
 var color = 'black' //初始颜色
 var widthKey = 'normal'
@@ -91,9 +92,8 @@ download.onclick = function(){
   document.body.appendChild(a)
   a.href = url
   filename = prompt('图片名称')
-  console.log(filename)
   a.download = filename
-  a.click()
+  if (filename !== null){a.click()}
 }
 //函数声明
 function activeRemove(){
