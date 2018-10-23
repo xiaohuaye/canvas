@@ -78,6 +78,23 @@ thick.onclick = function(){
   widthColorRemove()
   thick.style.background = color
 }
+
+// 清空画板
+recovery.onclick = function(){
+  context.clearRect(0,0,canvas.width,canvas.height)
+}
+// 下载图片
+var filename = '我的图片'
+download.onclick = function(){
+  var url = canvas.toDataURL('img/png')
+  var a = document.createElement('a')
+  document.body.appendChild(a)
+  a.href = url
+  filename = prompt('图片名称')
+  console.log(filename)
+  a.download = filename
+  a.click()
+}
 //函数声明
 function activeRemove(){
   thin.classList.remove('active')
