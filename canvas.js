@@ -93,7 +93,10 @@ download.onclick = function(){
   a.href = url
   filename = prompt('图片名称')
   a.download = filename
-  if (filename !== null){a.click()}
+  if (filename === ''){
+    return
+  }else{a.click()}
+  document.body.removeChild(a)
 }
 //函数声明
 function activeRemove(){
